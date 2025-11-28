@@ -15,7 +15,10 @@
     <div id="particles-js"></div>
 
     <header class="navbar">
-        <a href="#inicio" class="logo">EcoTech</a>
+        <a href="#inicio" class="logo">
+            <img src="logo1.png" alt="Logo EcoTech Consultoria TI Verde" class="logo-img">
+            EcoTech Solutions
+        </a>
         <nav>
             <ul class="nav-menu">
                 <li><a href="#pilares">Pilares</a></li>
@@ -145,10 +148,10 @@
              <div class="cta-content">
                 <h2>Pronto para iniciar a transformação?</h2>
                 <p>Agende uma avaliação gratuita e descubra o potencial de economia da sua empresa.</p>
-                <a href="#" class="btn btn-primary btn-lg">Quero Agendar Minha Avaliação</a>
+                <button id="openModalBtn" class="btn btn-primary btn-lg">Quero Agendar Minha Avaliação</button>
              </div>
         </section>
-    </main>
+        </main>
 
     <footer class="site-footer">
         <div class="footer-container">
@@ -183,6 +186,36 @@
         </div>
     </footer>
 
+    <div id="contactModal" class="modal-overlay modal-hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn"><i class="fas fa-times"></i></button>
+
+            <div class="contact-intro">
+                <h2>Preencha para Agendar</h2>
+                <p>Excelente! Por favor, preencha os dados abaixo e entraremos em contato para confirmar a data e hora da sua avaliação gratuita.</p>
+            </div>
+            
+            <form class="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="nome_modal">Nome Completo</label>
+                    <input type="text" id="nome_modal" name="nome" required placeholder="O seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email_modal">E-mail Profissional</label>
+                    <input type="email" id="email_modal" name="email" required placeholder="exemplo@empresa.com">
+                </div>
+                <div class="form-group">
+                    <label for="assunto_modal">Assunto</label>
+                    <input type="text" id="assunto_modal" name="assunto" required placeholder="Ex: Avaliação de Data Center">
+                </div>
+                <div class="form-group">
+                    <label for="mensagem_modal">Mensagem</label>
+                    <textarea id="mensagem_modal" name="mensagem" rows="5" required placeholder="Descreva brevemente a sua necessidade..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">Enviar Pedido de Contato</button>
+            </form>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
 </body>

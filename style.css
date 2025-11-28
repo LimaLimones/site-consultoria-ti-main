@@ -35,7 +35,15 @@ body {
 
 /* ---- Header e Navegação ---- */
 .navbar { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background-color: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; height: 80px; border-bottom: 1px solid var(--border-color); transition: background-color 0.6s ease, border-color 0.6s ease; }
-.logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; transition: color 0.6s ease; }
+.logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; transition: color 0.6s ease; display: flex; align-items: center; } /* Ajustado: display: flex e align-items: center */
+/* ESTILO DO LOGO IMG - TAMANHO REDUZIDO PARA 30PX */
+.logo-img {
+    height: 85px; /* AJUSTE DE TAMANHO */
+    margin-right: 10px;
+    vertical-align: middle; 
+    transition: height 0.6s ease;
+}
+/* FIM ESTILO LOGO IMG */
 .nav-menu { display: flex; list-style: none; gap: 2rem; }
 .nav-menu a { color: var(--dark-color); font-weight: 600; text-decoration: none; position: relative; padding-bottom: 5px; transition: color 0.6s ease; }
 .nav-menu a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--primary-color); transition: width 0.3s ease; }
@@ -56,6 +64,10 @@ body.header-inverted .logo,
 body.header-inverted .nav-menu a { color: #fff; }
 body.header-inverted .btn-secondary { color: #fff; border-color: #fff; }
 body.header-inverted .btn-secondary:hover { background-color: #fff; color: #1e1e1e; }
+body.header-inverted .logo-img {
+    filter: brightness(1.2); 
+}
+
 
 /* ---- Seções de Conteúdo ---- */
 .content-section { padding-top: 100px; padding-bottom: 100px; }
@@ -113,6 +125,151 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .cta-section { background-color: var(--primary-color); color: #fff; padding: 5rem 2rem; text-align: center; display: grid; place-content: center; }
 .cta-content p { margin: 1.5rem 0; font-size: 1.1rem; max-width: 600px; }
 .cta-section .btn-primary { background-color: var(--secondary-color); color: var(--dark-color); border-color: var(--secondary-color); }
+
+
+/* ---- ESTILOS DO FORMULÁRIO (MANTIDOS E AJUSTADOS PARA MODAL) ---- */
+
+.contact-intro {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.contact-intro h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 0;
+}
+
+.contact-intro p {
+    color: var(--dark-color); 
+    line-height: 1.7;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.contact-form {
+    background-color: var(--card-bg-color); 
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: none; 
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 0.95rem;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(105, 54, 245, 0.2);
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form .btn-primary {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* ---- ESTILOS PARA VALIDAÇÃO DE FORMULÁRIO (ERROS) ---- */
+.error-message {
+    color: #e74c3c; 
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.input-error {
+    border-color: #e74c3c !important; 
+}
+
+.input-error:focus {
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.3) !important; 
+}
+
+/* ---- ESTILOS DA NOVA JANELA MODAL ---- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 1001; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    overflow-y: auto; 
+}
+
+.modal-hidden {
+    display: none; 
+    opacity: 0;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    max-width: 500px; 
+    width: 90%;
+    position: relative;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    margin: 40px 0; 
+}
+
+.modal-overlay:not(.modal-hidden) .modal-content {
+    animation: slideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark-color);
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-modal-btn:hover {
+    color: #e74c3c;
+}
+
+/* FIM DOS ESTILOS DA MODAL */
+
+
 .site-footer { background-color: #1A1A1A; color: #ccc; padding: 4rem 2rem 2rem; }
 .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; max-width: 1200px; margin: 0 auto; padding-bottom: 3rem; }
 .footer-column { flex: 1; min-width: 200px; }
@@ -126,6 +283,8 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 /* ---- ANIMAÇÕES ---- */
 @keyframes card-enter { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
 
 /* ---- Responsividade ---- */
 @media (max-width: 992px) {
@@ -135,4 +294,8 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
     .pilares-grid, .solucoes-grid { grid-template-columns: 1fr; }
     #solucoes { margin: 0; border-radius: 0;}
     .footer-container { flex-direction: column; text-align: center; }
+    
+    .modal-content {
+        padding: 1.5rem;
+    }
 }
