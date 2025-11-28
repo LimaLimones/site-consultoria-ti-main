@@ -38,7 +38,7 @@ body {
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; transition: color 0.6s ease; display: flex; align-items: center; } /* Ajustado: display: flex e align-items: center */
 /* ESTILO DO LOGO IMG - TAMANHO REDUZIDO PARA 30PX */
 .logo-img {
-    height: 70px; /* AJUSTE DE TAMANHO */
+    height: 85px; /* AJUSTE DE TAMANHO */
     margin-right: 10px;
     vertical-align: middle; 
     transition: height 0.6s ease;
