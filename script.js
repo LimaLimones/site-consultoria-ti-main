@@ -74,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- LÓGICA PARA CONTROLE DA JANELA MODAL ---
     const contactModal = document.getElementById('contactModal');
     const openModalBtn = document.getElementById('openModalBtn');
+    const openModalNavBtns = document.querySelectorAll('.open-modal-nav'); // NOVO: Seleciona o botão da navbar
     const closeModalBtn = document.querySelector('.close-modal-btn');
     
     // Função para abrir o modal
@@ -92,9 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Listener para o botão principal da seção CTA
     if (openModalBtn) {
         openModalBtn.addEventListener('click', openModal);
     }
+    
+    // NOVO: Listener para o botão da barra de navegação
+    openModalNavBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // Impede o salto da âncora #
+            openModal();
+        });
+    });
 
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', closeModal);
@@ -150,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Se o formulário for válido, simula o envio e fecha o modal
             if (formIsValid) {
                 console.log('Formulário Enviado com Sucesso! (Simulação)');
-                alert('A sua mensagem foi enviada! Em breve entraremos em contato.');
+                alert('A sua mensagem foi enviada! Em breve entraremos em contacto.');
                 contactForm.reset(); // Limpa o formulário
                 closeModal(); // Fecha a janela modal
             }
