@@ -38,7 +38,7 @@ body {
 .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary-color); text-decoration: none; transition: color 0.6s ease; display: flex; align-items: center; } /* Ajustado: display: flex e align-items: center */
 /* ESTILO DO LOGO IMG - TAMANHO REDUZIDO PARA 30PX */
 .logo-img {
-    height: 85px; /* AJUSTE DE TAMANHO */
+    height: 30px; /* AJUSTE DE TAMANHO */
     margin-right: 10px;
     vertical-align: middle; 
     transition: height 0.6s ease;
@@ -84,7 +84,7 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; line-height: 1.8; text-align: left; animation-delay: 0.5s; }
 .hero-content .btn { animation-delay: 0.8s; }
 .hero-image { flex: 1; text-align: center; }
-.hero-image img { max-width: 100%; height: auto; }
+.hero-image img { max-width: 70%; height: auto; }
 
 /* ---- Seção Pilares ---- */
 .pilares-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; perspective: 1000px; max-width: 1200px; margin-left: auto; margin-right: auto; padding: 0 2rem;}
@@ -123,11 +123,24 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 
 /* ---- CTA e Rodapé ---- */
 .cta-section { background-color: var(--primary-color); color: #fff; padding: 5rem 2rem; text-align: center; display: grid; place-content: center; }
-.cta-content p { margin: 1.5rem 0; font-size: 1.1rem; max-width: 600px; }
+.cta-content { 
+    max-width: 600px; 
+    margin: 0 auto; 
+}
+.cta-content h2 {
+    color: #fff;
+    text-align: center;
+}
+.cta-content p { 
+    margin: 1.5rem 0; 
+    font-size: 1.1rem; 
+    /* AJUSTE: O parágrafo não precisa de max-width aqui pois está no cta-content */
+    text-align: center; /* ESSENCIAL: Centraliza o texto do parágrafo */
+}
 .cta-section .btn-primary { background-color: var(--secondary-color); color: var(--dark-color); border-color: var(--secondary-color); }
 
 
-/* ---- ESTILOS DO FORMULÁRIO (MANTIDOS E AJUSTADOS PARA MODAL) ---- */
+/* ---- ESTILOS DO FORMULÁRIO (MODAL) ---- */
 
 .contact-intro {
     text-align: center;
