@@ -134,8 +134,7 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .cta-content p { 
     margin: 1.5rem 0; 
     font-size: 1.1rem; 
-    /* AJUSTE: O parágrafo não precisa de max-width aqui pois está no cta-content */
-    text-align: center; /* ESSENCIAL: Centraliza o texto do parágrafo */
+    text-align: center; 
 }
 .cta-section .btn-primary { background-color: var(--secondary-color); color: var(--dark-color); border-color: var(--secondary-color); }
 
@@ -301,14 +300,43 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 
 /* ---- Responsividade ---- */
 @media (max-width: 992px) {
+    /* Esconde a navegação e botões em telas pequenas (Pode ser substituído por um ícone de menu hamburger) */
     .nav-menu, .nav-buttons { display: none; }
-    .hero-container { flex-direction: column; text-align: center; padding: 120px 0 50px 0; }
+    
+    .hero-container { 
+        flex-direction: column; 
+        text-align: center; 
+        padding: 120px 0 50px 0; 
+    }
+    .hero-content {
+        order: 2; /* Move o conteúdo para baixo da imagem (opcional) */
+        padding-bottom: 2rem;
+    }
+    .hero-image {
+        order: 1; /* Move a imagem para o topo */
+    }
+
     .hero-content h1, .hero-content p { text-align: center; }
+    
+    /* Pilares e Soluções se empilham */
     .pilares-grid, .solucoes-grid { grid-template-columns: 1fr; }
     #solucoes { margin: 0; border-radius: 0;}
+    
+    /* Footer se empilha */
     .footer-container { flex-direction: column; text-align: center; }
     
+    /* Modal para celular */
     .modal-content {
         padding: 1.5rem;
+    }
+
+    /* Reduz o tamanho do título Hero em celular */
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    /* Ajusta a margem do botão no Hero */
+    .hero-content .btn {
+        margin-bottom: 1rem;
     }
 }
