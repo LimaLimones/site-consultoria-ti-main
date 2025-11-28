@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Se o formulário for válido, simula o envio e fecha o modal
             if (formIsValid) {
                 console.log('Formulário Enviado com Sucesso! (Simulação)');
-                alert('A sua mensagem foi enviada! Em breve entraremos em contacto.');
+                alert('A sua mensagem foi enviada! Em breve entraremos em contato.');
                 contactForm.reset(); // Limpa o formulário
                 closeModal(); // Fecha a janela modal
             }
