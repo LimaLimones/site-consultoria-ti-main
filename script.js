@@ -130,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Remove todas as mensagens de erro anteriores
             document.querySelectorAll('.error-message').forEach(el => el.remove());
-            document.querySelectorAll('.form-group input, .form-group textarea').forEach(el => el.classList.remove('input-error'));
+            document.querySelectorAll('.form-group input').forEach(el => el.classList.remove('input-error'));
 
-            // Campos a validar (seleciona todos os inputs e textareas dentro do form-group)
-            const fields = contactForm.querySelectorAll('.form-group input, .form-group textarea');
+            // Campos a validar (seleciona todos os inputs dentro do form-group)
+            const fields = contactForm.querySelectorAll('.form-group input');
 
             fields.forEach(field => {
                 const value = field.value.trim();
@@ -141,9 +141,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 1. Validação de Campo Vazio
                 if (value === '' && field.required) {
-                    displayError(field, `O campo ${fieldName.replace('_modal', '').charAt(0).toUpperCase() + fieldName.replace('_modal', '').slice(1)} é obrigatório.`);
+                    let displayFieldName = fieldName.replace('_modal', '').charAt(0).toUpperCase() + fieldName.replace('_modal', '').slice(1);
+                    if (fieldName === 'telefone_modal') {
+                        displayFieldName = 'Número de Telefone'; 
+                    }
+                    displayError(field, `O campo ${displayFieldName} é obrigatório.`);
                     formIsValid = false;
-                    return; 
                 }
 
                 // 2. Validação de Formato de Email
@@ -155,12 +158,27 @@ document.addEventListener('DOMContentLoaded', function() {
                         formIsValid = false;
                     }
                 }
+                
+                // [AJUSTADO] 3. Validação de Número de Telefone (Normaliza antes de validar o comprimento)
+                if (field.type === 'tel' && value !== '') {
+                    // Remove tudo que não for dígito. Ex: (11) 93440-0040 -> 11934400040
+                    const cleanValue = value.replace(/\D/g, ''); 
+
+                    // Regex ajustada para aceitar 10 (fíxo com DDD) ou 11 (telemóvel com DDD) dígitos
+                    // Nota: Esta Regex é usada na string LIMPA (sem formatação)
+                    const phoneRegex = /^(\d{10}|\d{11})$/; 
+                    
+                    if (!phoneRegex.test(cleanValue)) {
+                        displayError(field, 'Por favor, insira um número de telefone válido (com DDD, 10 ou 11 dígitos). Ex: (11) 93440-0040.');
+                        formIsValid = false;
+                    }
+                }
             });
 
             // Se o formulário for válido, simula o envio e fecha o modal
             if (formIsValid) {
                 console.log('Formulário Enviado com Sucesso! (Simulação)');
-                alert('A sua mensagem foi enviada! Em breve entraremos em contacto.');
+                alert('A sua mensagem foi enviada! Em breve entraremos em contato.');
                 contactForm.reset(); // Limpa o formulário
                 closeModal(); // Fecha a janela modal
             }
