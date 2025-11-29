@@ -286,6 +286,19 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .footer-column ul { list-style: none; padding: 0; }
 .footer-column a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
 .footer-column a:hover { color: var(--secondary-color); }
+
+/* INÍCIO DAS REGRAS PARA HOVER EM INFORMAÇÕES DE CONTATO */
+.footer-column .contact-info p {
+    color: #ccc; /* Mantém a cor original */
+    margin-bottom: 0.5rem; /* Adiciona espaçamento entre as linhas de contato */
+    transition: color 0.3s ease;
+}
+
+.footer-column .contact-info p:hover {
+    color: var(--secondary-color); /* Muda para a cor verde (secondary-color) */
+}
+/* FIM DAS REGRAS PARA HOVER EM INFORMAÇÕES DE CONTATO */
+
 .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
 .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #444; max-width: 1200px; margin: 0 auto; }
 
