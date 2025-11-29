@@ -50,6 +50,34 @@ document.addEventListener('DOMContentLoaded', function() {
         cardObserver.observe(card);
     });
 
+    // --- LÓGICA PARA GIRO DOS CARDS NO MOBILE (TOUCH) ---
+    const pilarCards = document.querySelectorAll('.pilar-card');
+    pilarCards.forEach(card => {
+        // Adiciona um listener para o toque (touchstart)
+        card.addEventListener('touchstart', function(e) {
+            e.stopPropagation(); // Evita que o toque se propague
+            
+            // Primeiro, remove a classe 'active' de todos os outros cards
+            pilarCards.forEach(c => {
+                if (c !== card) {
+                    c.classList.remove('active');
+                }
+            });
+
+            // Alterna a classe 'active' no card atual
+            card.classList.toggle('active');
+        });
+    });
+
+    // Adiciona um listener para fechar o card girado ao tocar em qualquer lugar que não seja um card
+    document.addEventListener('touchstart', function(e) {
+        if (!e.target.closest('.pilar-card')) {
+            pilarCards.forEach(card => {
+                card.classList.remove('active');
+            });
+        }
+    });
+
     // --- LÓGICA PARA ANIMAÇÃO DE FUNDO COM PARTICLES.JS ---
     if (document.getElementById('particles-js')) {
         particlesJS('particles-js', {

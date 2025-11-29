@@ -91,18 +91,23 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .pilar-card { background-color: transparent; height: 300px; border-radius: 12px; opacity: 0; transform: translateY(30px); }
 .pilar-card.visible { animation: card-enter 0.6s ease-out forwards; }
 .pilar-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border-radius: 12px; }
-.pilar-card:hover .pilar-card-inner { transform: rotateY(180deg); }
+.pilar-card:hover .pilar-card-inner { transform: rotateY(180deg); } /* Hover Desktop */
+
+/* Adiciona a classe .active para habilitar o giro no mobile/touch */
+.pilar-card.active .pilar-card-inner { 
+    transform: rotateY(180deg); 
+}
+
 .pilar-card-front, .pilar-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 2rem; }
-.pilar-card-front { background-color: var(--card-bg-color); color: var(--dark-color); }
-.pilar-card-back { background-color: var(--primary-color); color: white; transform: rotateY(180deg); }
-.pilar-card-back h3 { margin-bottom: 1rem; }
-.pilar-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 1.5rem; }
-.pilar-card-front h3 { font-size: 1.5rem; color: var(--dark-color); }
 .pilar-card-front { 
     background-color: var(--card-bg-color); 
     color: var(--dark-color); 
     border: 2px solid var(--primary-color); /* BORDA ROXA FINA */
 }
+.pilar-card-back { background-color: var(--primary-color); color: white; transform: rotateY(180deg); }
+.pilar-card-back h3 { margin-bottom: 1rem; }
+.pilar-icon { font-size: 3rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+.pilar-card-front h3 { font-size: 1.5rem; color: var(--dark-color); }
 
 /* ---- Seção Soluções ---- */
 .solutions-section { background-color: var(--dark-section-rgba); }
@@ -292,7 +297,7 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
 .footer-column a { color: #ccc; text-decoration: none; transition: color 0.3s ease; }
 .footer-column a:hover { color: var(--secondary-color); }
 
-/* INÍCIO DAS REGRAS PARA HOVER EM INFORMAÇÕES DE CONTATO */
+/* REGRAS PARA HOVER EM INFORMAÇÕES DE CONTATO */
 .footer-column .contact-info p {
     color: #ccc; /* Mantém a cor original */
     margin-bottom: 0.5rem; /* Adiciona espaçamento entre as linhas de contato */
@@ -334,12 +339,31 @@ h2 { font-size: 2.5rem; text-align: center; margin-bottom: 1rem; color: var(--da
     .hero-content h1, .hero-content p { text-align: center; }
     
     /* Pilares e Soluções se empilham */
-    .pilares-grid, .solucoes-grid { grid-template-columns: 1fr; }
+    .pilares-grid, .solucoes-grid { 
+        grid-template-columns: 1fr; 
+    }
     #solucoes { margin: 0; border-radius: 0;}
     
-    /* Footer se empilha */
-    .footer-container { flex-direction: column; text-align: center; }
+    /* OTIMIZAÇÃO MOBILE PARA O RODAPÉ */
+    .footer-container { 
+        flex-direction: column; 
+        gap: 3rem; /* Aumenta o espaçamento entre as colunas */
+    }
+    .footer-column { 
+        text-align: center; /* Centraliza o texto dentro da coluna */
+        min-width: 100%; /* Garante que ocupe a largura total */
+    }
     
+    /* Centraliza a lista de navegação e os links sociais */
+    .footer-column ul { 
+        display: inline-block; /* Permite centralizar o bloco da lista */
+        text-align: left; /* Mantém o alinhamento da lista à esquerda do bloco */
+    }
+    .social-links { 
+        justify-content: center; /* Centraliza os ícones */
+    }
+    /* FIM OTIMIZAÇÃO MOBILE PARA O RODAPÉ */
+
     /* Modal para celular */
     .modal-content {
         padding: 1.5rem;
